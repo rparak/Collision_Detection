@@ -11,6 +11,7 @@ def Deselect_All() -> None:
     
     for obj in bpy.context.selected_objects:
         bpy.data.objects[obj.name].select_set(False)
+    bpy.context.view_layer.update()
 
 def Object_Exist(name: str) -> bool:
     """
