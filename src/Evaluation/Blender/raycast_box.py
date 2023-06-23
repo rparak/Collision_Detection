@@ -68,8 +68,8 @@ def main():
                              bpy.data.objects['Line_Segmet_Point_1'].location], dtype=np.float32)
 
     # Create a class to visualize a line segment.
-    LS_Poly = Lib.Blender.Core.Poly_3D('Line_Segmet_ID_0', {'bevel_depth': 0.005, 'color': [0.1,0.1,0.1,1.0]}, 
-                                       {'visibility': False, 'radius': None, 'color': None})
+    LS_Poly = Lib.Blender.Core.Poly_3D_Cls('Line_Segmet_ID_0', {'bevel_depth': 0.005, 'color': [0.1,0.1,0.1,1.0]}, 
+                                          {'visibility': False, 'radius': None, 'color': None})
     # Initialize the size (length) of the polyline data set.
     LS_Poly.Initialization(line_segment.shape[0])
 

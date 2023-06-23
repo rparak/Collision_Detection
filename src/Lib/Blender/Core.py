@@ -6,7 +6,7 @@ import typing as tp
 #   ../Lib/Blender/Utilities
 import Lib.Blender.Utilities
 
-class Poly_3D(object):
+class Poly_3D_Cls(object):
     """
     Description:
         Visualization of a 3-D (dimensional) polyline.
@@ -35,8 +35,8 @@ class Poly_3D(object):
     
         Example:
             Initialization:
-                Cls = Poly_3D(name, {'bevel_depth': bevel_depth, 'color': color}, 
-                              {'visibility': visibility, 'radius': radius, 'color': color})
+                Cls = Poly_3D_Cls(name, {'bevel_depth': bevel_depth, 'color': color}, 
+                                 {'visibility': visibility, 'radius': radius, 'color': color})
             
             Features:
                 # Remove the object (polyline) from the scene.
