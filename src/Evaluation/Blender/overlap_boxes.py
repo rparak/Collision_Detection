@@ -24,7 +24,7 @@ Description:
 # Properties of the Axis-aligned Bounding Boxes (AABBs) or Oriented Bounding 
 # Boxes (OBBs):
 #   Scale of the Boxes.
-CONST_BOX_SCALES = [[1.0, 1.0, 1.0], [1.0, 1.0, 1.0]]
+CONST_BOX_SCALES = [[0.5, 0.5, 0.5], [0.5, 0.5, 0.5]]
 #   Name of the Boxes.
 #       Note: The name of the string is important because the keyword "AABB.." or "OBB.." is 
 #             used to decide which algorithm to use.
