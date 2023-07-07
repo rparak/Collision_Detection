@@ -8,6 +8,8 @@ import sys
 if '../' + 'src' not in sys.path:
     sys.path.append('../' + 'src')
 # Custom Script:
+#   ../Lib/Blender/Parameters/Camera
+import Lib.Blender.Parameters.Camera
 #   ../Lib/Blender/Utilities
 import Lib.Blender.Utilities
 #   ../Lib/Collision_Detection/Collider/Core
@@ -17,6 +19,15 @@ import Lib.Collision_Detection.Primitives as Primitives
 #   ../Lib/Transformation/Core
 from Lib.Transformation.Core import Homogeneous_Transformation_Matrix_Cls as HTM_Cls
     
+"""
+Description:
+    Open Overlap.blend from the Blender folder and copy + paste this script and run it.
+
+    Terminal:
+        $ cd Documents/GitHub/Collision_Detection/Blender
+        $ blender Overlap.blend
+"""
+
 """
 Description:
     Initialization of constants.
@@ -29,6 +40,8 @@ CONST_BOX_SCALES = [[0.5, 0.5, 0.5], [0.5, 0.5, 0.5]]
 #       Note: The name of the string is important because the keyword "AABB.." or "OBB.." is 
 #             used to decide which algorithm to use.
 CONST_BOX_NAMES  = ['AABB_ID_0', 'AABB_ID_1']
+# Set the structure of the main parameters of the camera.
+CONST_CAMERA_TYPE = Lib.Blender.Parameters.Camera.Right_View_Camera_Parameters_Str
 
 def main():
     """
@@ -46,6 +59,10 @@ def main():
 
     # Deselect all objects in the current scene.
     Lib.Blender.Utilities.Deselect_All()
+
+    # Set the camera (object) transformation and projection.
+    if Lib.Blender.Utilities.Object_Exist('Camera'):
+        Lib.Blender.Utilities.Set_Camera_Properties('Camera', CONST_CAMERA_TYPE)
 
     Box_Cls = [None, None]
     for i, (box_name_i, box_scale_i) in enumerate(zip(CONST_BOX_NAMES, CONST_BOX_SCALES)):
