@@ -407,7 +407,7 @@ def Quadratic_Eqn(a: float, b: float, c: float) -> tp.List[float]:
             # The roots do not exist or the roots are imaginary.
             return np.array([0.0, 0.0], dtype=np.float32)
     else:
-        return np.array([0.0, Linear_Eqn(b, c)], dtype=np.float32)
+        return np.array([0.0, Linear_Eqn(b, c)[0]], dtype=np.float32)
 
 def Inverse_Companion_Matrix(p: tp.List[float]) -> tp.List[tp.List[float]]:
     """
@@ -453,24 +453,18 @@ def Inverse_Companion_Matrix(p: tp.List[float]) -> tp.List[tp.List[float]]:
                                                                  with the polynomial {p}.
     """
 
-    try:
-        assert p[0] > 0.0
+    if isinstance(p, list):
+        p = np.array(p, dtype=np.float32)
 
-        if isinstance( p, list):
-            p = np.array(p, dtype=np.float32)
+    # The size {N} of the square matrix.
+    N = p.size - 1
+    
+    # Create the inverse of the companion matrix: C^(-1)
+    C = np.zeros((N, N), dtype=p.dtype)
+    C[:, 0] = (-1) * (p[1:] / p[0])
+    C[0:N-1, 1:] = np.eye(N - 1, dtype=p.dtype)
 
-        # The size {N} of the square matrix.
-        N = p.size - 1
-        
-        # Create the inverse of the companion matrix: C^(-1)
-        C = np.zeros((N, N), dtype=p.dtype)
-        C[:, 0] = (-1) * (p[1:] / p[0])
-        C[0:N-1, 1:] = np.eye(N - 1, dtype=p.dtype)
-
-        return C
-    except AssertionError as error:
-        print(f'[ERROR] Information: {error}')
-        print(f'[ERROR] The first coefficient must be greater than zero.')
+    return C
 
 def N_Degree_Eqn(p: tp.List[float]) -> tp.List[float]:
     """
@@ -516,7 +510,7 @@ def Roots(p: tp.List[float]) -> tp.List[float]:
     
         # Check the degree of the input polynomial.
         assert p.size > 1
-       
+
         if p.size > 2:
             # If the roots cannot be solved using a linear equation.
             i = 0
@@ -524,7 +518,7 @@ def Roots(p: tp.List[float]) -> tp.List[float]:
                 if p_i == 0 and p_ii != 0:
                     i += 1
                     break
-        
+
             p_n = p[i:]
 
             # Selects the calculation method based on the number of polynomial coefficients {p}.
