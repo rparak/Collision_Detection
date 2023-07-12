@@ -253,7 +253,24 @@ class Box_Cls(object):
         """
 
         return self.__vertices
-    
+
+    @property
+    def Faces(self) -> tp.List[tp.List[tp.List[float]]]:
+        """
+        Description:
+            Get the faces of the object.
+
+        Returns:
+            (1) parameter [Vector<float> 6x4x3]: Faces of the object.
+        """
+
+        return np.array([[self.__vertices[0], self.__vertices[1], self.__vertices[2], self.__vertices[3]],
+                         [self.__vertices[4], self.__vertices[5], self.__vertices[6], self.__vertices[7]],
+                         [self.__vertices[3], self.__vertices[0], self.__vertices[4], self.__vertices[7]],
+                         [self.__vertices[2], self.__vertices[1], self.__vertices[5], self.__vertices[6]],
+                         [self.__vertices[0], self.__vertices[1], self.__vertices[5], self.__vertices[4]],
+                         [self.__vertices[3], self.__vertices[2], self.__vertices[6], self.__vertices[7]]], dtype=np.float32)
+        
     @property
     def T(self) -> HTM_Cls:
         """
