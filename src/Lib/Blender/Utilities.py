@@ -145,7 +145,7 @@ def Create_Primitive(type: str, name: str, properties: tp.Tuple[tp.Tuple[float, 
         (1) type [string]: Type of the object. 
                             Primitives: ['Plane', 'Cube', 'Sphere', 'Capsule']
         (2) name [string]: The name of the created object.
-        (3) properties [{'transformation': {'Size/Radius': float, 'Scale/Size/None': Vector<float>, Location': Vector<float>}, 
+        (3) properties [{'transformation': {'Size/Radius': float, 'Scale/Size/None': Vector<float>, 'Location': Vector<float>}, 
                          'material': {'RGBA': Vector<float>, 'alpha': float}}]: Properties of the created object. The structure depends on 
                                                                                 on the specific object.
     """
