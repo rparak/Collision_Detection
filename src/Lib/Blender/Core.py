@@ -65,8 +65,9 @@ class Poly_3D_Cls(object):
         self.__data_block = bpy.data.curves.new(self.__name, type='CURVE')
         self.__data_block.dimensions = '3D'
         self.__data_block.bevel_depth = curve_properties['bevel_depth']
-        # Radius of points.
+        # Radius and color of points.
         self.__radius_points = point_properties['radius']
+        self.__color_points = point_properties['color']
         # The collection of splines in this polyline data-block.
         self.__polyline = self.__data_block.splines.new('POLY')
         # Creation of new material.
@@ -74,11 +75,6 @@ class Poly_3D_Cls(object):
         self.__material_curve = bpy.data.materials.new(self.__data_block.name + 'mat')
         self.__material_curve.use_nodes = True
         self.__material_curve.node_tree.nodes['Principled BSDF'].inputs['Base Color'].default_value = curve_properties['color']
-        #   Points (Sphere).
-        if self.__visibility_points == True:
-            self.__material_sphere = bpy.data.materials.new(self.__data_block.name + 'mat')
-            self.__material_sphere.use_nodes = True
-            self.__material_sphere.node_tree.nodes['Principled BSDF'].inputs['Base Color'].default_value = point_properties['color']
     
     def Initialization(self, size_of_ds: int) -> None:
         """
@@ -118,12 +114,13 @@ class Poly_3D_Cls(object):
             (2 - 4) x, y, z [float]: Coordinates of the point (spherical object).
         """
         
+        # Properties of the created object.
+        point_properties = {'transformation': {'Radius': self.__radius_points, 'Location': [x, y, z]}, 
+                            'material': {'RGBA': self.__color_points, 'alpha': 1.0}}
+        
         # Creation a spherical object with a defined position.
-        Lib.Blender.Utilities.Create_Primitive('Sphere', {'Radius': self.__radius_points, 'Location': (x, y, z)})
+        Lib.Blender.Utilities.Create_Primitive('Sphere', f'Point_{index}', point_properties)
         bpy.ops.object.shade_smooth()
-        # Change the name and material of the object.
-        bpy.context.active_object.name = f'Point_{index}'
-        bpy.context.active_object.active_material = self.__material_sphere
     
     def Visualization(self):
         """
