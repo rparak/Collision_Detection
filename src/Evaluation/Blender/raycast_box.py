@@ -51,7 +51,7 @@ CONST_CAMERA_TYPE = Lib.Blender.Parameters.Camera.Right_View_Camera_Parameters_S
 def main():
     """
     Description:
-        A simple script to evaluate an algorithm to check if a line segment intersects with 3D primitive object.
+        A program to evaluate an algorithm to check if a line segment intersects with 3D primitive object.
 
         The 3D primitive object in our case can be:
             1\ Axis-aligned Bounding Box (AABB)
