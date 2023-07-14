@@ -46,7 +46,7 @@ CONST_CAMERA_TYPE = Lib.Blender.Parameters.Camera.Right_View_Camera_Parameters_S
 def main():
     """
     Description:
-        A simple script to evaluate an algorithm to check if two 3D primitives overlap (intersect) or not.
+        A program to evaluate an algorithm to check if two 3D primitives overlap (intersect) or not.
 
         The combination of the two primitives in our case can be:
             1\ AABB <-> AABB: 
