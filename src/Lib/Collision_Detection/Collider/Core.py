@@ -14,8 +14,7 @@ import Lib.Transformation.Utilities.Mathematics as Mathematics
 
 """
 Description:
-    Some useful references about the field of object collisions.
-
+    Some useful references about the field of object collisions:
         1. Real-Time Collision Detection, Christer Ericson
         2. Collision Detection in Interactive 3D Environments, Gino van den Bergen
         3. Game Physics Cookbook, Gabor Szauer
