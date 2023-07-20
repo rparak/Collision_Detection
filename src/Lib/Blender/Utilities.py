@@ -2,6 +2,13 @@
 import bpy
 # Typing (Support for type hints)
 import typing as tp
+# Numpy (Array computing) [pip3 install numpy]
+import numpy as np
+# Custom Library:
+#   ../Lib/Transformation/Core
+import Lib.Transformation.Core as Transformation
+#   ../Lib/Blender/Parameters/Camera
+import Lib.Blender.Parameters.Camera
 
 def Deselect_All() -> None:
     """
@@ -171,3 +178,38 @@ def Create_Primitive(type: str, name: str, properties: tp.Tuple[tp.Tuple[float, 
 
     # Update the scene.
     bpy.context.view_layer.update()
+
+def Set_Object_Transformation(name: str, T: tp.List[tp.List[float]]) -> None:
+    """
+    Description:
+        Set the object transformation.
+        
+    Args:
+        (1) name [string]: Name of the main object.
+        (2) T [Matrix<float> 4x4]: Homogeneous transformation matrix (access to location, rotation and scale).
+    """
+
+    if isinstance(T, (list, np.ndarray)):
+        T = Transformation.Homogeneous_Transformation_Matrix_Cls(T, np.float32)
+    
+    bpy.data.objects[name].matrix_basis = T.Transpose().all()
+
+def Set_Camera_Properties(name: str, Camera_Parameters_Str: Lib.Blender.Parameters.Camera.Camera_Parameters_Str):
+    """
+    Description:
+        Set the camera (object) transformation and projection.
+
+    Args:
+        (1) name [string]: Object name.
+        (2) Camera_Parameters_Str [Camera_Parameters_Str(object)]: The structure of the main parameters of the camera.
+    """
+
+    # Set the object transformation.
+    Set_Object_Transformation(name, Camera_Parameters_Str.T)
+
+    # Set the projection of the camera.
+    bpy.data.cameras[name].type = Camera_Parameters_Str.Type
+    if Camera_Parameters_Str.Type == 'PERSP':
+        bpy.data.cameras[name].lens = Camera_Parameters_Str.Value
+    elif Camera_Parameters_Str.Type == 'ORTHO':
+        bpy.data.cameras[name].ortho_scale = Camera_Parameters_Str.Value

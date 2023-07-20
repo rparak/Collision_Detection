@@ -3,10 +3,10 @@ import numpy as np
 # Typing (Support for type hints)
 import typing as tp
 # Custom Script:
-#  ../Lib/Collision_Detection/Collider/Utilities
-import Lib.Collision_Detection.Collider.Utilities as Utilities
-#  ../Lib/Collision_Detection/Primitives
-import Lib.Collision_Detection.Primitives as Primitives
+#  ../Lib/Geometry/Collider/Utilities
+import Lib.Geometry.Collider.Utilities as Utilities
+#  ../Lib/Geometry/Primitives
+import Lib.Geometry.Primitives as Primitives
 #  ../Lib/Transformation/Core
 from Lib.Transformation.Core import Homogeneous_Transformation_Matrix_Cls as HTM_Cls, Vector3_Cls, Get_Matrix_Identity
 #   ../Lib/Transformation/Utilities/Mathematics

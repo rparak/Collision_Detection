@@ -3,8 +3,8 @@ import numpy as np
 # Typing (Support for type hints)
 import typing as tp
 # Custom Script:
-#  ../Lib/Collision_Detection/Primitives
-import Lib.Collision_Detection.Primitives as Primitives
+#  ../Lib/Geometry/Primitives
+import Lib.Geometry.Primitives as Primitives
 #   ../Lib/Transformation/Utilities/Mathematics
 import Lib.Transformation.Utilities.Mathematics as Mathematics
 
