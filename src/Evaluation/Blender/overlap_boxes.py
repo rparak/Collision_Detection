@@ -54,7 +54,7 @@ def main():
             2\ OBB <-> OBB  : 
                 CONST_BOX_NAMES = ['OBB_ID_0', 'OBB_ID_1']
             3\ OBB <-> AABB : 
-                CONST_BOX_NAMES = ['OBB_ID_0', 'AABB_ID_0']
+                CONST_BOX_NAMES = ['OBB_ID_0', 'AABB_ID_0'] or ['AABB_ID_0', 'OBB_ID_0']
     """
 
     # Deselect all objects in the current scene.

@@ -329,13 +329,14 @@ class AABB_Cls(object):
                         return False
                 
                 return True
+            
             elif object.Type == CONST_TYPE_OBB:
                 """
                 Method: AABB <-> OBB
                     Testing whether AABB and OBB overlap.
                 """ 
                                 
-                object.Overlap(self)
+                return object.Overlap(self)
                 
         except AssertionError as error:
             print(f'[ERROR] Information: {error}')
