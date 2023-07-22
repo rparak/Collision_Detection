@@ -208,10 +208,13 @@ class Box_Cls(object):
         # Convert the initial object sizes to a transformation matrix.
         self.__T_Size = HTM_Cls(None, np.float32).Scale(self.__size)
 
+        # Calculate the ratio between origin and size.
+        ratio = np.array(origin, np.float32) / self.__size
+        
         # Calculate the vertices of the box defined by the input parameters of the class.
         self.__vertices = np.zeros(CONST_BOX_SHAPE, dtype=np.float32)
         for i, verts_i in enumerate(self.__Get_Init_Vertices()):
-            self.__vertices[i, :] = (self.__T_Size.all() @ np.append(verts_i - origin, 1.0).tolist())[0:3]
+            self.__vertices[i, :] = (self.__T_Size.all() @ np.append(verts_i - ratio, 1.0).tolist())[0:3]
             
     @staticmethod
     def __Get_Init_Vertices() -> tp.List[tp.List[float]]:
