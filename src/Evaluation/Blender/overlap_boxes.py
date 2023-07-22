@@ -12,10 +12,10 @@ if '../' + 'src' not in sys.path:
 import Lib.Blender.Parameters.Camera
 #   ../Lib/Blender/Utilities
 import Lib.Blender.Utilities
-#   ../Lib/Geometry/Collider/Core
-import Lib.Geometry.Collider.Core as Collider
-#   ../Lib/Geometry/Primitives
-import Lib.Geometry.Primitives as Primitives
+#   ../Lib/Collider/Core
+import Lib.Collider.Core as Collider
+#   ../Lib/Primitives/Core
+import Lib.Primitives.Core as Primitives
 #   ../Lib/Transformation/Core
 from Lib.Transformation.Core import Homogeneous_Transformation_Matrix_Cls as HTM_Cls
     

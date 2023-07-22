@@ -3,8 +3,8 @@ import numpy as np
 # Typing (Support for type hints)
 import typing as tp
 # Custom Script:
-#  ../Lib/Geometry/Primitives
-import Lib.Geometry.Primitives as Primitives
+#  ../Lib/Primitives/Core
+import Lib.Primitives.Core as Primitives
 #   ../Lib/Transformation/Utilities/Mathematics
 import Lib.Transformation.Utilities.Mathematics as Mathematics
 
