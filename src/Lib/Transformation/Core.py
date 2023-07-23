@@ -2143,4 +2143,4 @@ class Quaternion_Cls(object):
                  [-2.0*self.__q[0]*self.__q[2] + 2.0*self.__q[1]*self.__q[3],  2.0*self.__q[0]*self.__q[1] + 2.0*self.__q[2]*self.__q[3],             -2.0*self.__q[1]**2 - 2.0*self.__q[2]**2 + 1.0, 0.0],
                  [                                                       0.0,                                                        0.0,                                                        0.0, 1.0]]
 
-        return Homogeneous_Transformation_Matrix_Cls(T, np.float64)
+        return Homogeneous_Transformation_Matrix_Cls(T, np.float32)
