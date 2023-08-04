@@ -4,6 +4,24 @@
 <img src=https://github.com/rparak/Collision_Detection/blob/main/images/Collision_Detection_Background.png width="800" height="380">
 </p>
 
+## Requirements:
+
+**Programming Language:**
+
+```bash
+Python
+```
+
+**Import Libraries:**
+```bash
+More information can be found in the individual scripts (.py).
+```
+
+**Supported on the following operating systems:**
+```bash
+Windows, Linux, macOS
+```
+
 ## Contact Info:
 Roman.Parak@outlook.com
 
