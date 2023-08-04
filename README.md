@@ -22,6 +22,12 @@ More information can be found in the individual scripts (.py).
 Windows, Linux, macOS
 ```
 
+## Project Description:
+Text .....
+
+## Simple Demonstration:
+Text .....
+
 ## Contact Info:
 Roman.Parak@outlook.com
 
