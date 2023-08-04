@@ -5,8 +5,8 @@ import numpy as np
 # System (Default)
 import sys
 #   Add access if it is not in the system path.
-if '../' + 'src' not in sys.path:
-    sys.path.append('../' + 'src')
+if '../../' + 'src' not in sys.path:
+    sys.path.append('../../' + 'src')
 # Custom Script:
 #   ../Lib/Blender/Parameters/Camera
 import Lib.Blender.Parameters.Camera
@@ -24,7 +24,7 @@ Description:
     Open Point_Inside.blend from the Blender folder and copy + paste this script and run it.
 
     Terminal:
-        $ cd Documents/GitHub/Collision_Detection/Blender
+        $ cd Documents/GitHub/Collision_Detection/Blender/Collision_Detection
         $ blender Point_Inside.blend
 """
 
@@ -96,7 +96,8 @@ def main():
 
     # To evaluate the correct position/rotation of the box, find the vertices of the object.
     for i, verts_i in enumerate(Box_Cls.Vertices):
-        bpy.data.objects[f'Vertex_ID_0_{i}'].location = verts_i
+        if Lib.Blender.Utilities.Object_Exist(f'Vertex_ID_0_{i}') == True:
+            bpy.data.objects[f'Vertex_ID_0_{i}'].location = verts_i
         
     # reate a specific class to work with a point.
     Point_Cls_id_0 = Primitives.Point_Cls([0.0,0.0,0.0])

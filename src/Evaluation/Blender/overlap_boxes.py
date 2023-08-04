@@ -5,8 +5,8 @@ import numpy as np
 # System (Default)
 import sys
 #   Add access if it is not in the system path.
-if '../' + 'src' not in sys.path:
-    sys.path.append('../' + 'src')
+if '../../' + 'src' not in sys.path:
+    sys.path.append('../../' + 'src')
 # Custom Script:
 #   ../Lib/Blender/Parameters/Camera
 import Lib.Blender.Parameters.Camera
@@ -24,7 +24,7 @@ Description:
     Open Overlap.blend from the Blender folder and copy + paste this script and run it.
 
     Terminal:
-        $ cd Documents/GitHub/Collision_Detection/Blender
+        $ cd Documents/GitHub/Collision_Detection/Blender/Collision_Detection
         $ blender Overlap.blend
 """
 
@@ -88,7 +88,8 @@ def main():
 
         # To evaluate the correct position/rotation of the box, find the vertices of the object.
         for j, verts_j in enumerate(Box_Cls[i].Vertices):
-            bpy.data.objects[f'Vertex_ID_{i}_{j}'].location = verts_j
+            if Lib.Blender.Utilities.Object_Exist(f'Vertex_ID_{i}_{j}') == True:
+                bpy.data.objects[f'Vertex_ID_{i}_{j}'].location = verts_j
 
     # Check if two 3D primitives overlap (intersect) or not.
     if Box_Cls[0].Overlap(Box_Cls[1]) == True:

@@ -5,8 +5,8 @@ import numpy as np
 # System (Default)
 import sys
 #   Add access if it is not in the system path.
-if '../' + 'src' not in sys.path:
-    sys.path.append('../' + 'src')
+if '../../' + 'src' not in sys.path:
+    sys.path.append('../../' + 'src')
 # Custom Script:
 #   ../Lib/Blender/Parameters/Camera
 import Lib.Blender.Parameters.Camera
@@ -26,7 +26,7 @@ Description:
     Open Raycast.blend from the Blender folder and copy + paste this script and run it.
 
     Terminal:
-        $ cd Documents/GitHub/Collision_Detection/Blender
+        $ cd Documents/GitHub/Collision_Detection/Blender/Collision_Detection
         $ blender Raycast.blend
 """
 
@@ -121,7 +121,8 @@ def main():
 
     # To evaluate the correct position/rotation of the box, find the vertices of the object.
     for i, verts_i in enumerate(Box_Cls.Vertices):
-        bpy.data.objects[f'Vertex_ID_0_{i}'].location = verts_i
+        if Lib.Blender.Utilities.Object_Exist(f'Vertex_ID_0_{i}') == True:
+            bpy.data.objects[f'Vertex_ID_0_{i}'].location = verts_i
                  
     # Check if a line segment intersects with 3D primitive object (AABB or OBB). The function also contains information about 
     # where the line segment intersects the box.
@@ -129,9 +130,9 @@ def main():
 
     if is_intersection == True:
         # Properties of the created object.
-        sphere_1_properties = {'transformation': {'Radius': 0.025, 'Location': points[0]}, 
+        sphere_1_properties = {'transformation': {'Radius': 0.015, 'Location': points[0]}, 
                                'material': {'RGBA': [0.0,0.0,0.0,1.0], 'alpha': 1.0}}
-        sphere_2_properties = {'transformation': {'Radius': 0.025, 'Location': points[1]}, 
+        sphere_2_properties = {'transformation': {'Radius': 0.015, 'Location': points[1]}, 
                                'material': {'RGBA': [0.0,0.0,0.0,1.0], 'alpha': 1.0}}
                          
         # Create a primitive three-dimensional object (sphere) with additional properties.
