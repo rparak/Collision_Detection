@@ -23,7 +23,7 @@ Windows, Linux, macOS
 ```
 
 ## Project Description:
-Text .....
+The library can be used within the Robot Operating System (ROS), Blender, PyBullet, Nvidia Isaac, or any program that allows Python as a programming language.
 
 ## Simple Demonstration:
 Text .....
