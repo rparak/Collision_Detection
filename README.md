@@ -42,6 +42,8 @@ $ ../Collision_Detection/Blender> blender Overlap.blend
 <img src=https://github.com/rparak/Collision_Detection/blob/main/images/3D_Shape_Intersections.png width="800" height="350">
 </p>
 
+A simple program that describes how to work with the library can be found below. The whole program is in the evaluation folder, as I mentioned in the text at the top.
+
 ```py 
 # System (Default)
 import sys
@@ -89,12 +91,7 @@ def main():
         Box_Cls[i].Transformation(HTM_Cls(bpy.data.objects[box_name_i].matrix_basis, np.float32))
 
     # Check if two 3D primitives overlap (intersect) or not.
-    if Box_Cls[0].Overlap(Box_Cls[1]) == True:
-        # The boxes overlap.
-        print(True)
-    else:
-        # The boxes do not overlap.
-        print(False)
+    print(Box_Cls[0].Overlap(Box_Cls[1]))
 
 if __name__ == '__main__':
     sys.exit(main())
