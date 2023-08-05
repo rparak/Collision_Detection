@@ -28,6 +28,24 @@ The library can be used within the Robot Operating System (ROS), Blender, PyBull
 ## Simple Demonstration
 Text .....
 
+**3D Shape Intersections**
+
+<p align="center">
+<img src=https://github.com/rparak/Collision_Detection/blob/main/images/3D_Shape_Intersections.png width="800" height="350">
+</p>
+
+**3D Point Tests**
+
+<p align="center">
+<img src=https://github.com/rparak/Collision_Detection/blob/main/images/3D_Point_Tests.png width="800" height="350">
+</p>
+
+**3D Line Intersections**
+
+<p align="center">
+<img src=https://github.com/rparak/Collision_Detection/blob/main/images/3D_Line_Intersections.png width="800" height="350">
+</p>
+
 ## Contact Info
 Roman.Parak@outlook.com
 
