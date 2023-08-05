@@ -27,6 +27,16 @@ The library can be used within the Robot Operating System (ROS), Blender, PyBull
 
 ## 3D Shape Intersections
 
+A description of how to run a program to evaluate an algorithm to check whether two 3D primitives overlap (intersect) or not.
+1. Open Overlap.blend from the Blender folder.
+2. Copy and paste the script from the evaluation folder (../src/Evaluation/Blender/overlap_boxes.py).
+3. Run it and evaluate the results.
+   
+```bash
+$ /> cd Documents/GitHub/Collision_Detection/Blender/Collision_Detection
+$ ../Collision_Detection/Blender> blender Overlap.blend
+```
+
 <p align="center">
 <img src=https://github.com/rparak/Collision_Detection/blob/main/images/3D_Shape_Intersections.png width="800" height="350">
 </p>
