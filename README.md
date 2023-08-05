@@ -29,7 +29,7 @@ An open-source library for collision detection of bounding boxes (AABB, OBB), us
 Path: ..\Collision_Detection\src\Lib\Collider\Core.py
 ```
 
-In particular, the library focuses on solving the path planning problem and the self-collision problem in kinematics (inverse, forward). But as an open-source library, it can be used for other tasks, as creativity knows no limits.
+In particular, the library focuses on solving the path planning problem and the self-collision problem in kinematics (inverse, forward). But, as an open-source library, it can be used for other tasks, as creativity knows no limits.
 
 For the initialization of primitives such as point, box, and line segment, see the following script.
 
