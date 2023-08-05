@@ -23,9 +23,23 @@ Windows, Linux, macOS
 ```
 
 ## Project Description
+An open-source library for collision detection of bounding boxes (AABB, OBB), useful for robotic applications such as path planning, inverse kinematics, and so on. The library provides access to specific classes for working with both types of bounding boxes: Axis-aligned Bounding Boxes (AABB) and Oriented Bounding Boxes (OBB).
+
+```bash
+Path: ..\Collision_Detection\src\Lib\Collider\Core.py
+```
+
+For the initialization of primitives such as point, box, and line segment, see the following script.
+
+```bash
+Path: ..\Collision_Detection\src\Lib\Primitives\Core.py
+```
+
+The repository also contains a transformation library with the necessary project-related functions.
+[github.com/rparak/Transformation]([https://github.com/vuejs/vue](https://github.com/rparak/Transformation))
+
 The library can be used within the Robot Operating System (ROS), Blender, PyBullet, Nvidia Isaac, or any program that allows Python as a programming language.
 
-A detailed description of each algorithm can be found in the library.
 ## 3D Shape Intersections
 
 A description of how to run a program to evaluate an algorithm to check whether two 3D primitives overlap (intersect) or not.
