@@ -36,7 +36,8 @@ Path: ..\Collision_Detection\src\Lib\Primitives\Core.py
 ```
 
 The repository also contains a transformation library with the necessary project-related functions.
-[github.com/rparak/Transformation]([https://github.com/vuejs/vue](https://github.com/rparak/Transformation))
+
+[github.com/rparak/Transformation](https://github.com/rparak/Transformation)
 
 The library can be used within the Robot Operating System (ROS), Blender, PyBullet, Nvidia Isaac, or any program that allows Python as a programming language.
 
