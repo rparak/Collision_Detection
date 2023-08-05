@@ -1,7 +1,7 @@
 # An Open-Source Collision Detection Library Useful for Robotics Applications
 
 <p align="center">
-<img src=https://github.com/rparak/Collision_Detection/blob/main/images/Collision_Detection_Background.png width="800" height="380">
+<img src=https://github.com/rparak/Collision_Detection/blob/main/images/Collision_Detection_Background.png width="800" height="350">
 </p>
 
 ## Requirements:
