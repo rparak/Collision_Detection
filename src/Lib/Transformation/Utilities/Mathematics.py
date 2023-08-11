@@ -46,33 +46,47 @@ CONST_EPS_64 = 2.22e-16
 CONST_MATH_PI = 3.141592653589793
 CONST_MATH_HALF_PI = 1.5707963267948966
 
-def Radian_To_Degree(x: float) -> float:
+def Radian_To_Degree(x: tp.Union[float, tp.List[float]]) -> tp.Union[float, tp.List[float]]:
     """
     Description:
         Functions for converting angles from radians to degrees.
 
     Args:
-        (1) x [float]: Anglein radians.
+        (1) x [float or Vector<float>]: Angle in radians.
 
     Returns:
-        (1) parameter [float]: Angle in degrees.
+        (1) parameter [float or Vector<float>]: Angle in degrees.
     """
 
-    return x * (180.0 / CONST_MATH_PI)
+    try:
+        assert isinstance(x, float) or isinstance(x, np.ndarray)
+        
+        return x * (180.0 / CONST_MATH_PI)
 
-def Degree_To_Radian(x: float) -> float:
+    except AssertionError as error:
+        print(f'[ERROR] Information: {error}')
+        print(f'[ERROR] Incorrect type of input parameters. Input parameter x must be of type float or np.ndarray.')
+
+def Degree_To_Radian(x: tp.Union[float, tp.List[float]]) -> tp.Union[float, tp.List[float]]:
     """
     Description:
         Functions for converting angles from degrees to radians.
 
     Args:
-        (1) x [float]: Angle in degrees.
+        (1) x [float or Vector<float>]: Angle in degrees.
 
     Returns:
-        (1) parameter [float]: Angle in radians.
+        (1) parameter [float or Vector<float>]: Angle in radians.
     """
 
-    return x * (CONST_MATH_PI / 180.0)
+    try:
+        assert isinstance(x, float) or isinstance(x, np.ndarray)
+        
+        return x * (CONST_MATH_PI / 180.0)
+
+    except AssertionError as error:
+        print(f'[ERROR] Information: {error}')
+        print(f'[ERROR] Incorrect type of input parameters. Input parameter x must be of type float or np.ndarray.')
 
 def Sign(x: float) -> float:
     """
