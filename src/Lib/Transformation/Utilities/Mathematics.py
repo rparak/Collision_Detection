@@ -124,13 +124,13 @@ def Euclidean_Norm(x: tp.List[float]) -> float:
     
     x_res = np.array(x).flatten()
     if x_res.size == 1:
-        return (x ** 2) ** (1.0/2.0)
+        return (x ** 2) ** (0.5)
     else:
         x_res_norm = 0.0
         for _, x_res_i in enumerate(x_res):
             x_res_norm += x_res_i ** 2
 
-        return x_res_norm ** (1.0/2.0)
+        return x_res_norm ** (0.5)
 
 def Max(x: tp.List[float]) -> tp.Tuple[int, float]:
     """
@@ -414,9 +414,9 @@ def Quadratic_Eqn(a: float, b: float, c: float) -> tp.List[float]:
         if D >= 0.0:
             # Numerically stable method for solving quadratic equations.
             if b >= 0.0:
-                return np.array([(-b - (D)**(1.0/2.0)) / (2*a), (2*c)/(-b - (D)**(1.0/2.0))], dtype=a.dtype)
+                return np.array([(-b - (D)**(0.5)) / (2*a), (2*c)/(-b - (D)**(0.5))], dtype=a.dtype)
             else:
-                return np.array([(-b + (D)**(1.0/2.0)) / (2*a), (2*c)/(-b + (D)**(1.0/2.0))], dtype=a.dtype)
+                return np.array([(-b + (D)**(0.5)) / (2*a), (2*c)/(-b + (D)**(0.5))], dtype=a.dtype)
         else:
             # The roots do not exist or the roots are imaginary.
             return np.array([0.0, 0.0], dtype=np.float32)
