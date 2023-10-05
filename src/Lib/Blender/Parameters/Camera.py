@@ -67,7 +67,7 @@ Camera view from the right.
     The properties of the projection view: Perspective, 50.0
 """
 Right_View_Camera_Parameters_Str = Camera_Parameters_Str()
-Right_View_Camera_Parameters_Str.T = Transformation.Homogeneous_Transformation_Matrix_Cls(None, np.float32).Rotation([Mathematics.Degree_To_Radian(70.0), 0.0, Mathematics.Degree_To_Radian(115.0)], 
+Right_View_Camera_Parameters_Str.T = Transformation.Homogeneous_Transformation_Matrix_Cls(None, np.float64).Rotation([Mathematics.Degree_To_Radian(70.0), 0.0, Mathematics.Degree_To_Radian(115.0)], 
                                                                                           'XYZ').Translation([3.25, 1.5, 1.45])
 Right_View_Camera_Parameters_Str.Type  = 'PERSP'
 Right_View_Camera_Parameters_Str.Value = 50.0

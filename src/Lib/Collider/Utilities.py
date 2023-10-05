@@ -48,7 +48,7 @@ def Get_Min_Max(vertices: tp.List[float]) -> tp.Tuple[tp.List[float], tp.List[fl
         (2) parameter [Vector<float> 1x3]: Maximum X, Y, Z values of the input vertices.
     """
 
-    min_vec3 = np.array([vertices[0, 0], vertices[0, 1], vertices[0, 2]], dtype=np.float32)
+    min_vec3 = np.array([vertices[0, 0], vertices[0, 1], vertices[0, 2]], dtype=np.float64)
     max_vec3 = min_vec3.copy()
     
     for _, verts_i in enumerate(vertices[1::]):
@@ -70,7 +70,7 @@ def CMP(a: float, b: float, epsilon: float) -> bool:
         (1, 2) a, b [float]: Input numbers to be compared.
         (3) epsilon [float]: The machine epsilon. It must be scaled according to the size of the values.
                              Note:
-                                epsilon = np.finfo(np.float32).eps or Mathematics.CONST_EPS_32
+                                epsilon = np.finfo(np.float64).eps or Mathematics.CONST_EPS_32
 
     Returns:
         (1) parameter [bool]: Output logical variable with certain principles.
@@ -102,5 +102,5 @@ def Get_Points_of_Intersection(t_min: float, t_max: float, line_segment: Primiti
     t_1 = Mathematics.Clamp((0.5 - t_max), 0.0, 1.0)
  
     return np.array([(1 - t_0) * line_segment.a + t_0 * line_segment.b, 
-                     (1 - t_1) * line_segment.a + t_1 * line_segment.b], np.float32)
+                     (1 - t_1) * line_segment.a + t_1 * line_segment.b], np.float64)
 

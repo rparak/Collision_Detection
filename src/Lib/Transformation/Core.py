@@ -47,7 +47,7 @@ def Get_Matrix_Identity(n: int) -> tp.List[tp.List[float]]:
         (1) parameter [Matrix<float> nxn]: Identity matrix.
     """
 
-    M = np.zeros((n, n), dtype=np.float32)
+    M = np.zeros((n, n), dtype=np.float64)
     for i in range(n):
         M[i, i] = 1.0
 
@@ -65,7 +65,7 @@ def Get_Matrix_Tranpose(M: tp.List[tp.List[float]]) -> tp.List[tp.List[float]]:
             (1) parameter [Matrix<float> mxn]: Transposed matrix.
         """
 
-        M_out = np.zeros((M.shape[1], M.shape[0]), dtype=np.float32)
+        M_out = np.zeros((M.shape[1], M.shape[0]), dtype=np.float64)
         for i, M_out_i in enumerate(M):
             for j, M_out_ij in enumerate(M_out_i):
                 M_out[j][i] = M_out_ij
@@ -85,7 +85,7 @@ def Get_Matrix_Diagonal(M: tp.List[tp.List[float]]) -> tp.List[float]:
         (1) parameter [Vector<float> 1x4]: Vector of elements of the diagonal of the input matrix.
     """
 
-    v_diag = np.zeros(M.shape[0], dtype=np.float32)
+    v_diag = np.zeros(M.shape[0], dtype=np.float64)
     for j, M_i in enumerate(M):
         v_diag[j] = M_i[j]
 
@@ -127,9 +127,9 @@ def Get_Translation_Matrix(ax: str, theta: tp.List[float]) -> tp.List[tp.List[fl
     """
 
     return {
-        'X': lambda x: Homogeneous_Transformation_Matrix_Cls(Get_Matrix_Identity(4), np.float32).Translation([  x, 0.0, 0.0]),
-        'Y': lambda x: Homogeneous_Transformation_Matrix_Cls(Get_Matrix_Identity(4), np.float32).Translation([0.0,   x, 0.0]),
-        'Z': lambda x: Homogeneous_Transformation_Matrix_Cls(Get_Matrix_Identity(4), np.float32).Translation([0.0, 0.0,   x])
+        'X': lambda x: Homogeneous_Transformation_Matrix_Cls(Get_Matrix_Identity(4), np.float64).Translation([  x, 0.0, 0.0]),
+        'Y': lambda x: Homogeneous_Transformation_Matrix_Cls(Get_Matrix_Identity(4), np.float64).Translation([0.0,   x, 0.0]),
+        'Z': lambda x: Homogeneous_Transformation_Matrix_Cls(Get_Matrix_Identity(4), np.float64).Translation([0.0, 0.0,   x])
     }[ax](theta)
 
 def __Get_Rotation_Matrix_X(theta: tp.List[float]) -> tp.List[tp.List[float]]:
@@ -157,7 +157,7 @@ def __Get_Rotation_Matrix_X(theta: tp.List[float]) -> tp.List[tp.List[float]]:
     return Homogeneous_Transformation_Matrix_Cls([[ 1.0,  0.0,         0.0, 0.0],
                                                   [ 0.0, c_th, (-1.0)*s_th, 0.0],
                                                   [ 0.0, s_th,        c_th, 0.0],
-                                                  [ 0.0,  0.0,         0.0, 1.0]], np.float32)
+                                                  [ 0.0,  0.0,         0.0, 1.0]], np.float64)
 
 def __Get_Rotation_Matrix_Y(theta: tp.List[float]) -> tp.List[tp.List[float]]:
     """
@@ -184,7 +184,7 @@ def __Get_Rotation_Matrix_Y(theta: tp.List[float]) -> tp.List[tp.List[float]]:
     return Homogeneous_Transformation_Matrix_Cls([[        c_th, 0.0, s_th, 0.0],
                                                   [         0.0, 1.0,  0.0, 0.0],
                                                   [ (-1.0)*s_th, 0.0, c_th, 0.0],
-                                                  [         0.0, 0.0,  0.0, 1.0]], np.float32)
+                                                  [         0.0, 0.0,  0.0, 1.0]], np.float64)
 
 def __Get_Rotation_Matrix_Z(theta: tp.List[float]) -> tp.List[tp.List[float]]:
     """
@@ -211,7 +211,7 @@ def __Get_Rotation_Matrix_Z(theta: tp.List[float]) -> tp.List[tp.List[float]]:
     return Homogeneous_Transformation_Matrix_Cls([[ c_th, (-1.0)*s_th, 0.0, 0.0],
                                                   [ s_th,        c_th, 0.0, 0.0],
                                                   [ 0.0,          0.0, 1.0, 0.0],
-                                                  [  0.0,         0.0, 0.0, 1.0]], np.float32)
+                                                  [  0.0,         0.0, 0.0, 1.0]], np.float64)
 
 def Get_Rotation_Matrix(ax: str, theta: tp.List[float]) -> tp.List[tp.List[float]]:
     """
@@ -285,7 +285,7 @@ class Vector3_Cls(object):
             Initialization:
                 # Assignment of the variables.
                 v = [0.0, 0.0, 0.0]
-                data_type = np.float32
+                data_type = np.float64
 
                 # Initialization of the class.
                 Cls = Vector3_Cls(v, data_type)
@@ -303,7 +303,7 @@ class Vector3_Cls(object):
     # Create a global data type for the class.
     cls_data_type = tp.TypeVar('cls_data_type')
 
-    def __init__(self, v: tp.List[float] = None, data_type: cls_data_type = np.float32) -> None:
+    def __init__(self, v: tp.List[float] = None, data_type: cls_data_type = np.float64) -> None:
         try:
             # << PRIVATE >> #
             self.__data_type = data_type
@@ -654,7 +654,7 @@ def Get_Euler_XYZ_From_Matrix(T: tp.List[tp.List[float]]) -> tp.List[float]:
     """
 
     # Initialization of the Euler angle theta for the ZYX axis sequence.
-    theta = Euler_Angle_Cls([0.0] * 3, 'XYZ', np.float32)
+    theta = Euler_Angle_Cls([0.0] * 3, 'XYZ', np.float64)
 
     # Numerical instability: 
     #   Note: Paul S. Heckbert (Ed.). 1994. Graphics gems IV. Academic Press Professional, Inc., USA.
@@ -713,7 +713,7 @@ def Get_Euler_ZYX_From_Matrix(T: tp.List[tp.List[float]]) -> tp.List[float]:
     """
 
     # Initialization of the Euler angle theta for the ZYX axis sequence.
-    theta = Euler_Angle_Cls([0.0] * 3, 'ZYX', np.float32)
+    theta = Euler_Angle_Cls([0.0] * 3, 'ZYX', np.float64)
 
     # Numerical instability: 
     #   Note: Paul S. Heckbert (Ed.). 1994. Graphics gems IV. Academic Press Professional, Inc., USA.
@@ -774,7 +774,7 @@ def Get_Angle_Axis_From_Matrix(T: tp.List[tp.List[float]]) -> tp.Tuple[tp.List[f
     else:
         return (alpha, (1.0/(2.0 * np.sin(alpha)) * Vector3_Cls([T[2, 1] - T[1, 2], 
                                                                  T[0, 2] - T[2, 0], 
-                                                                 T[1, 0] - T[0, 1]], np.float32)).Normalize())
+                                                                 T[1, 0] - T[0, 1]], np.float64)).Normalize())
 
 def Get_Matrix_From_Angle_Axis(alpha: float, v: tp.List[float]) -> tp.List[tp.List[float]]:
     """
@@ -817,12 +817,12 @@ def Get_Matrix_From_Angle_Axis(alpha: float, v: tp.List[float]) -> tp.List[tp.Li
     else:
         c_th = np.cos(alpha); s_th = np.sin(alpha)
         v_th = 1 - c_th
-        v_hat = Vector3_Cls(v, np.float32).Normalize()
+        v_hat = Vector3_Cls(v, np.float64).Normalize()
 
         return Homogeneous_Transformation_Matrix_Cls([[                   v_hat[0]**2 * v_th + c_th, v_hat[0] * v_hat[1] * v_th - v_hat[2] * s_th, v_hat[0] * v_hat[2] * v_th + v_hat[1] * s_th, 0.0],
                                                       [v_hat[0] * v_hat[1] * v_th + v_hat[2] * s_th,                    v_hat[1]**2 * v_th + c_th, v_hat[1] * v_hat[2] * v_th - v_hat[0] * s_th, 0.0],
                                                       [v_hat[0] * v_hat[2] * v_th - v_hat[1] * s_th, v_hat[1] * v_hat[2] * v_th + v_hat[0] * s_th,                    v_hat[2]**2 * v_th + c_th, 0.0],
-                                                      [                                         0.0,                                          0.0,                                          0.0, 1.0]], np.float32)
+                                                      [                                         0.0,                                          0.0,                                          0.0, 1.0]], np.float64)
 
 def Get_Quaternion_From_Matrix(T: tp.List[tp.List[float]]) -> tp.List[float]:
     """
@@ -843,7 +843,7 @@ def Get_Quaternion_From_Matrix(T: tp.List[tp.List[float]]) -> tp.List[float]:
     """
 
     if isinstance(T, (list, np.ndarray)):
-        T = Homogeneous_Transformation_Matrix_Cls(T, np.float32)
+        T = Homogeneous_Transformation_Matrix_Cls(T, np.float64)
 
     # Get the rotation part from the homogeneous transformation matrix {T}.
     R = T.R
@@ -902,7 +902,7 @@ def Get_Quaternion_From_Angle_Axis(alpha: float, v: tp.List[float]) -> tp.List[f
     """
     
     if isinstance(v, (list, np.ndarray)):
-        v = Vector3_Cls(v, np.float32)
+        v = Vector3_Cls(v, np.float64)
 
     alpha_half = alpha * 0.5
     return Quaternion_Cls(np.append(np.cos(alpha_half), v.Normalize().all() * np.sin(alpha_half)).tolist(), v.Type).Normalize()
@@ -937,7 +937,7 @@ class Homogeneous_Transformation_Matrix_Cls(object):
                      [0.0, 1.0, 0.0, 0.0],
                      [0.0, 0.0, 1.0, 0.0],
                      [0.0, 0.0, 0.0, 1.0]]
-                data_type = np.float32
+                data_type = np.float64
                 
                 # Initialization of the class.
                 Cls = Homogeneous_Transformation_Matrix_Cls(T, data_type)
@@ -956,7 +956,7 @@ class Homogeneous_Transformation_Matrix_Cls(object):
     # Create a global data type for the class.
     cls_data_type = tp.TypeVar('cls_data_type')
 
-    def __init__(self, T: tp.List[tp.List[float]] = None, data_type: cls_data_type = np.float32) -> None:
+    def __init__(self, T: tp.List[tp.List[float]] = None, data_type: cls_data_type = np.float64) -> None:
         try: 
             # << PRIVATE >> #
             self.__data_type = data_type
@@ -1371,7 +1371,7 @@ class Euler_Angle_Cls(Vector3_Cls):
                 # Assignment of the variables.
                 theta = [0.0, 0.0, 0.0]
                 axes_sequence_cfg = 'ZYX'
-                data_type = np.float32
+                data_type = np.float64
 
                 # Initialization of the class.
                 Cls = Euler_Angle_Cls(theta, axes_sequence_cfg, data_type)
@@ -1391,7 +1391,7 @@ class Euler_Angle_Cls(Vector3_Cls):
     cls_data_type = tp.TypeVar('cls_data_type')
 
     def __init__(self, theta: tp.List[float] = None, axes_sequence_cfg: str = 'ZYX', 
-                 data_type: cls_data_type = np.float32) -> None:
+                 data_type: cls_data_type = np.float64) -> None:
                  
         # Returns the objects represented in the parent class (Vector3_Cls). 
         super().__init__(theta, data_type)
@@ -1540,7 +1540,7 @@ class Quaternion_Cls(object):
             Initialization:
                 # Assignment of the variables.
                 q = [1.0, 0.0, 0.0, 0.0]
-                data_type = np.float32
+                data_type = np.float64
 
                 # Initialization of the class.
                 Cls = Quaternion_Cls(q, data_type)
@@ -1559,7 +1559,7 @@ class Quaternion_Cls(object):
     # Create a global data type for the class.
     cls_data_type = tp.TypeVar('cls_data_type')
 
-    def __init__(self, q: tp.List[float] = None, data_type: cls_data_type = np.float32) -> None:
+    def __init__(self, q: tp.List[float] = None, data_type: cls_data_type = np.float64) -> None:
         try:
             # << PRIVATE >> #
             self.__data_type = data_type
@@ -2143,4 +2143,4 @@ class Quaternion_Cls(object):
                  [-2.0*self.__q[0]*self.__q[2] + 2.0*self.__q[1]*self.__q[3],  2.0*self.__q[0]*self.__q[1] + 2.0*self.__q[2]*self.__q[3],             -2.0*self.__q[1]**2 - 2.0*self.__q[2]**2 + 1.0, 0.0],
                  [                                                       0.0,                                                        0.0,                                                        0.0, 1.0]]
 
-        return Homogeneous_Transformation_Matrix_Cls(T, np.float32)
+        return Homogeneous_Transformation_Matrix_Cls(T, np.float64)

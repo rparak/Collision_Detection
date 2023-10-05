@@ -518,7 +518,7 @@ class OBB_Cls(object):
 
             q = self.__T.Get_Rotation('QUATERNION'); p = self.__T.p.all()
             for i, point_i in enumerate(self.__Box.Vertices):
-                self.__vertices[i, :] = q.Rotate(Vector3_Cls(point_i, np.float32)).all() + p
+                self.__vertices[i, :] = q.Rotate(Vector3_Cls(point_i, np.float64)).all() + p
 
         except AssertionError as error:
             print(f'[ERROR] Information: {error}')
@@ -540,7 +540,7 @@ class OBB_Cls(object):
             assert isinstance(point, Primitives.Point_Cls)
 
             # Each axis of the bounding box (OBB) rotation frame as a vector.
-            axis = np.zeros((3, Primitives.CONST_DIMENSION), dtype = np.float32)
+            axis = np.zeros((3, Primitives.CONST_DIMENSION), dtype = np.float64)
             #    X, Y and Z axis (orientation) the bounding box (OBB).
             axis[0] = self.__T.R[:, 0]; axis[1] = self.__T.R[:, 1]
             axis[2] = self.__T.R[:, 2]
@@ -551,7 +551,7 @@ class OBB_Cls(object):
             # A point P is inside the object (OBB) only if all the following conditions 
             # are satisfied. Otherwise it is outside the object (OBB).
             for _, (ax_i, size_i) in enumerate(zip(axis, self.__size * 0.5)):
-                if np.absolute(Vector3_Cls(ax_i, np.float32).Dot(v)) >= size_i:
+                if np.absolute(Vector3_Cls(ax_i, np.float64).Dot(v)) >= size_i:
                     return False
 
             return True
@@ -584,7 +584,7 @@ class OBB_Cls(object):
             assert isinstance(line_segment, Primitives.Line_Segment_Cls)
             
             # Each axis of the bounding box (OBB) rotation frame as a vector.
-            axis = np.zeros((3, Primitives.CONST_DIMENSION), dtype = np.float32)
+            axis = np.zeros((3, Primitives.CONST_DIMENSION), dtype = np.float64)
             #    X, Y and Z axis (orientation) the bounding box (OBB).
             axis[0] = self.__T.R[:, 0]; axis[1] = self.__T.R[:, 1]
             axis[2] = self.__T.R[:, 2]
@@ -595,9 +595,9 @@ class OBB_Cls(object):
             for i, (ax_i, size_i) in enumerate(zip(axis, self.__size * 0.5)):
                 # Projection:
                 #   1\ {v} onto each axis of the bounding box (OBB).
-                e_tmp = Vector3_Cls(ax_i, np.float32).Dot(v)
+                e_tmp = Vector3_Cls(ax_i, np.float64).Dot(v)
                 #   2\ {direction of the line segment} onto each axis of the bounding box (OBB).
-                f_tmp = Vector3_Cls(ax_i, np.float32).Dot(line_segment.Direction)
+                f_tmp = Vector3_Cls(ax_i, np.float64).Dot(line_segment.Direction)
 
                 # Check that the projection {f} is equal to zero.
                 if Utilities.CMP(f_tmp, 0.0, Mathematics.CONST_EPS_32) == True:
@@ -655,14 +655,14 @@ class OBB_Cls(object):
             (1, 2) parameter [float]: Minimum and maximum projection in an interval structure.
         """
                 
-        out_min = Vector3_Cls(axis, np.float32).Dot(verts[0])
+        out_min = Vector3_Cls(axis, np.float64).Dot(verts[0])
         out_max = out_min.copy()
 
         # Projection of individual vertices on the specified axes.
         for _, verts_i in enumerate(verts):
             # Projection of the axis onto the individual vertices 
             # of the bounding box (OBB, AABB).
-            projection = Vector3_Cls(axis, np.float32).Dot(verts_i)
+            projection = Vector3_Cls(axis, np.float64).Dot(verts_i)
             
             # Store the minimum and maximum projection in an interval structure.
             out_min = projection if projection < out_min else out_min
@@ -706,7 +706,7 @@ class OBB_Cls(object):
             """ 
             
             # Each axis of the bounding box (OBB, AABB) rotation frame as a vector. There are 15 potential axes to test.
-            axis = np.zeros((15, Primitives.CONST_DIMENSION), dtype = np.float32)
+            axis = np.zeros((15, Primitives.CONST_DIMENSION), dtype = np.float64)
             #    X, Y and Z axis (orientation) of the bounding box (OBB or AABB): Input Object.
             axis[0] = object.T.R[:, 0]; axis[1] = object.T.R[:, 1]
             axis[2] = object.T.R[:, 2]
@@ -716,9 +716,9 @@ class OBB_Cls(object):
 
             #   The last nine axes are the cross product of all the previous axes calculated above.
             for i in range(0, Primitives.CONST_DIMENSION):
-                axis[6 + i * 3] = Vector3_Cls(axis[i], np.float32).Cross(axis[3]).all()
-                axis[7 + i * 3] = Vector3_Cls(axis[i], np.float32).Cross(axis[4]).all()
-                axis[8 + i * 3] = Vector3_Cls(axis[i], np.float32).Cross(axis[5]).all()
+                axis[6 + i * 3] = Vector3_Cls(axis[i], np.float64).Cross(axis[3]).all()
+                axis[7 + i * 3] = Vector3_Cls(axis[i], np.float64).Cross(axis[4]).all()
+                axis[8 + i * 3] = Vector3_Cls(axis[i], np.float64).Cross(axis[5]).all()
 
             # Check if the minimum and maximum projection in the interval structure 
             # of the shapes overlap.

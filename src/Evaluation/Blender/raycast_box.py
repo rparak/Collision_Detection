@@ -82,7 +82,7 @@ def main():
             Lib.Blender.Utilities.Create_Primitive('Sphere', f'Line_Segmet_Point_{i}', point_i_properties)
         
     line_segment = np.array([bpy.data.objects['Line_Segmet_Point_0'].location, 
-                             bpy.data.objects['Line_Segmet_Point_1'].location], dtype=np.float32)
+                             bpy.data.objects['Line_Segmet_Point_1'].location], dtype=np.float64)
 
     # Create a class to visualize a line segment.
     LS_Poly = Lib.Blender.Core.Poly_3D_Cls('Line_Segmet_ID_0', {'bevel_depth': 0.005, 'color': [0.1,0.1,0.1,1.0]}, 
@@ -117,7 +117,7 @@ def main():
     Box_Cls = Collider.OBB_Cls(Primitive_Cls) if 'OBB' in CONST_BOX_NAME else (Collider.AABB_Cls(Primitive_Cls) 
                                                                                if 'AABB' in CONST_BOX_NAME else None)
     # Transform the box according to the input homogeneous transformation matrix.
-    Box_Cls.Transformation(HTM_Cls(bpy.data.objects[CONST_BOX_NAME].matrix_basis, np.float32))
+    Box_Cls.Transformation(HTM_Cls(bpy.data.objects[CONST_BOX_NAME].matrix_basis, np.float64))
 
     # To evaluate the correct position/rotation of the box, find the vertices of the object.
     for i, verts_i in enumerate(Box_Cls.Vertices):

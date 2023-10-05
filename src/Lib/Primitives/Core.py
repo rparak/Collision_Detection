@@ -78,7 +78,7 @@ class Point_Cls(object):
 
     def __init__(self, centroid: tp.List[float] = [0.0] * CONST_DIMENSION) -> None:
         # << PRIVATE >> #
-        self.__centroid = np.array(centroid, np.float32)
+        self.__centroid = np.array(centroid, np.float64)
 
     @property
     def Centroid(self) -> tp.List[float]:
@@ -101,7 +101,7 @@ class Point_Cls(object):
             (1) centroid [Vector<float> 1x3]: The desired center position (X, Y, Z) of the point.
         """
 
-        self.__centroid = np.array(centroid, np.float32)
+        self.__centroid = np.array(centroid, np.float64)
 
 class Line_Segment_Cls(object):
     """
@@ -227,19 +227,19 @@ class Box_Cls(object):
         
     def __init__(self, origin: tp.List[float] = [0.0] * CONST_DIMENSION, size: tp.List[float] = [0.0] * CONST_DIMENSION) -> None:
         # << PRIVATE >> #
-        self.__size = np.array(size, np.float32)
+        self.__size = np.array(size, np.float64)
 
         # The origin of the object.
-        self.__origin = np.array(origin, np.float32)
+        self.__origin = np.array(origin, np.float64)
 
         # Calculate the object's centroid from the object's origin.
-        self.__centroid = np.array([0.0] * CONST_DIMENSION, np.float32) - self.__origin
+        self.__centroid = np.array([0.0] * CONST_DIMENSION, np.float64) - self.__origin
 
         # Convert the initial object sizes to a transformation matrix.
-        self.__T_Size = HTM_Cls(None, np.float32).Scale(self.__size)
+        self.__T_Size = HTM_Cls(None, np.float64).Scale(self.__size)
 
         # Calculate the vertices of the box defined by the input parameters of the class.
-        self.__vertices = np.zeros(CONST_BOX_SHAPE, dtype=np.float32)
+        self.__vertices = np.zeros(CONST_BOX_SHAPE, dtype=np.float64)
         for i, verts_i in enumerate(self.__Get_Init_Vertices()):
             self.__vertices[i, :] = (self.__T_Size.all() @ np.append(verts_i, 1.0).tolist())[0:3] - self.__origin
 
@@ -258,7 +258,7 @@ class Box_Cls(object):
         """
  
         return np.array([[0.5, -0.5, -0.5], [0.5, 0.5, -0.5], [-0.5, 0.5, -0.5], [-0.5, -0.5, -0.5],
-                         [0.5, -0.5,  0.5], [0.5, 0.5,  0.5], [-0.5, 0.5,  0.5], [-0.5, -0.5,  0.5]], dtype=np.float32)
+                         [0.5, -0.5,  0.5], [0.5, 0.5,  0.5], [-0.5, 0.5,  0.5], [-0.5, -0.5,  0.5]], dtype=np.float64)
 
     @property
     def Size(self) -> tp.List[float]:
@@ -311,7 +311,7 @@ class Box_Cls(object):
                          [self.__vertices[3], self.__vertices[0], self.__vertices[4], self.__vertices[7]],
                          [self.__vertices[2], self.__vertices[1], self.__vertices[5], self.__vertices[6]],
                          [self.__vertices[0], self.__vertices[1], self.__vertices[5], self.__vertices[4]],
-                         [self.__vertices[3], self.__vertices[2], self.__vertices[6], self.__vertices[7]]], dtype=np.float32)
+                         [self.__vertices[3], self.__vertices[2], self.__vertices[6], self.__vertices[7]]], dtype=np.float64)
         
     @property
     def T(self) -> HTM_Cls:
@@ -324,4 +324,4 @@ class Box_Cls(object):
                                                                   of the object.
         """
 
-        return HTM_Cls(None, np.float32).Translation(self.__centroid)
+        return HTM_Cls(None, np.float64).Translation(self.__centroid)

@@ -217,7 +217,7 @@ def Set_Object_Transformation(name: str, T: tp.List[tp.List[float]]) -> None:
     """
 
     if isinstance(T, (list, np.ndarray)):
-        T = Transformation.Homogeneous_Transformation_Matrix_Cls(T, np.float32)
+        T = Transformation.Homogeneous_Transformation_Matrix_Cls(T, np.float64)
     
     bpy.data.objects[name].matrix_basis = T.Transpose().all()
 

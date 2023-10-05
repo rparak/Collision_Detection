@@ -84,7 +84,7 @@ def main():
         Box_Cls[i] = Collider.OBB_Cls(Primitive_Cls) if 'OBB' in box_name_i else (Collider.AABB_Cls(Primitive_Cls) 
                                                                                   if 'AABB' in box_name_i else None)
         # Transform the box according to the input homogeneous transformation matrix.
-        Box_Cls[i].Transformation(HTM_Cls(bpy.data.objects[box_name_i].matrix_basis, np.float32))
+        Box_Cls[i].Transformation(HTM_Cls(bpy.data.objects[box_name_i].matrix_basis, np.float64))
 
         # To evaluate the correct position/rotation of the box, find the vertices of the object.
         for j, verts_j in enumerate(Box_Cls[i].Vertices):

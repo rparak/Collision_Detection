@@ -92,7 +92,7 @@ def main():
     Box_Cls = Collider.OBB_Cls(Primitive_Cls) if 'OBB' in CONST_BOX_NAME else (Collider.AABB_Cls(Primitive_Cls) 
                                                                                if 'AABB' in CONST_BOX_NAME else None)
     # Transform the box according to the input homogeneous transformation matrix.
-    Box_Cls.Transformation(HTM_Cls(bpy.data.objects[CONST_BOX_NAME].matrix_basis, np.float32))
+    Box_Cls.Transformation(HTM_Cls(bpy.data.objects[CONST_BOX_NAME].matrix_basis, np.float64))
 
     # To evaluate the correct position/rotation of the box, find the vertices of the object.
     for i, verts_i in enumerate(Box_Cls.Vertices):
@@ -103,7 +103,7 @@ def main():
     Point_Cls_id_0 = Primitives.Point_Cls([0.0,0.0,0.0])
 
     # Generate random points in the scene with additional dependencies.
-    rnd_p = np.zeros(Primitives.CONST_DIMENSION, dtype = np.float32)
+    rnd_p = np.zeros(Primitives.CONST_DIMENSION, dtype = np.float64)
     for i in range(CONST_NUM_OF_RANDOM_POINTS):
         for j, (box_size_i, box_p_i) in enumerate(zip(Box_Cls.Size, Box_Cls.T.p)):
             rnd_p[j] = np.random.uniform((-1)*(np.abs(box_size_i/2.0) + CONST_OFFSET_RANDOM_POINTS), 
