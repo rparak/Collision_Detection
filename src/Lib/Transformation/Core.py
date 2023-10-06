@@ -33,6 +33,17 @@ import typing as tp
 # ../Utilities/Mathematics
 import Lib.Transformation.Utilities.Mathematics as Mathematics
 
+def Is_Matrix_Square(M: tp.List[tp.List[float]]):
+    """
+    Description:
+        A function to check if the shape of the matrix is square.
+
+    Returns:
+        (1) parameter [bool]: Information about whether the shape of the matrix is square.
+    """
+
+    return M.shape[0] == M.shape[1]
+    
 def Get_Matrix_Identity(n: int) -> tp.List[tp.List[float]]:
     """
     Description:
