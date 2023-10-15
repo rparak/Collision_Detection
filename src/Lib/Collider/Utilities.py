@@ -29,7 +29,7 @@ File Name: Utilities.py
 import numpy as np
 # Typing (Support for type hints)
 import typing as tp
-# Custom Script:
+# Custom Lib.:
 #  ../Lib/Primitives/Core
 import Lib.Primitives.Core as Primitives
 #   ../Lib/Transformation/Utilities/Mathematics
