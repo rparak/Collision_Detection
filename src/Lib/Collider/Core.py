@@ -29,7 +29,7 @@ File Name: Core.py
 import numpy as np
 # Typing (Support for type hints)
 import typing as tp
-# Custom Script:
+# Custom Lib.:
 #  ../Lib/Collider/Utilities
 import Lib.Collider.Utilities as Utilities
 #  ../Lib/Primitives/Core
