@@ -29,7 +29,7 @@ File Name: Transformation.py
 import numpy as np
 # Typing (Support for type hints)
 import typing as tp
-# Custom Library:
+# Custom Lib.:
 # ../Utilities/Mathematics
 import Lib.Transformation.Utilities.Mathematics as Mathematics
 
