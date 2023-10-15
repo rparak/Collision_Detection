@@ -31,7 +31,7 @@ import bpy
 import typing as tp
 # Numpy (Array computing) [pip3 install numpy]
 import numpy as np
-# Custom Library:
+# Custom Lib.:
 #   ../Lib/Transformation/Core
 import Lib.Transformation.Core as Transformation
 #   ../Lib/Blender/Parameters/Camera
