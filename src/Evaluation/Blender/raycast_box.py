@@ -7,7 +7,7 @@ import sys
 #   Add access if it is not in the system path.
 if '../../' + 'src' not in sys.path:
     sys.path.append('../../' + 'src')
-# Custom Script:
+# Custom Lib.:
 #   ../Lib/Blender/Parameters/Camera
 import Lib.Blender.Parameters.Camera
 #   ../Lib/Blender/Core
