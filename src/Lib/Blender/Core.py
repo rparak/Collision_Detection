@@ -29,7 +29,7 @@ File Name: Core.py
 import bpy
 # Typing (Support for type hints)
 import typing as tp
-# Custom Script:
+# Custom Lib.:
 #   ../Lib/Blender/Utilities
 import Lib.Blender.Utilities
 
