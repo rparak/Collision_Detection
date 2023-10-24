@@ -859,10 +859,16 @@ def Get_Quaternion_From_Matrix(T: tp.List[tp.List[float]]) -> tp.List[float]:
     # Get the rotation part from the homogeneous transformation matrix {T}.
     R = T.R
 
+    # Get the ordinal number of the largest element in the vector.
+    #   Note:
+    #       The i-th solution is considered to be the best solution.
+    i = Mathematics.Max(np.array([T.Trace() - 1.0, R[0, 0], R[1, 1], R[2, 2]], 
+                                  dtype=np.float64))[0]
+    
     # Initilization of the output quaternion (q = {w, x, y, z}).
     q = Quaternion_Cls(None, T.Type)
 
-    if R[1, 1] > (-1) * R[2, 2] and R[0, 0] > (-1) * R[1, 1] and R[0, 0] > (-1) * R[2, 2]:
+    if i == 0:
         temp_part = (1 + R[0, 0] + R[1, 1] + R[2, 2]) ** 0.5
         q[0] = temp_part
         q[1] = (R[2, 1] - R[1, 2]) / temp_part
@@ -870,7 +876,7 @@ def Get_Quaternion_From_Matrix(T: tp.List[tp.List[float]]) -> tp.List[float]:
         q[3] = (R[1, 0] - R[0, 1]) / temp_part
         return (q * 0.5).Normalize()
 
-    if R[1, 1] < (-1) * R[2, 2] and R[0, 0] > R[1, 1] and R[0, 0] > R[2, 2]:
+    if i == 1:
         temp_part = (1 + R[0, 0] - R[1, 1] - R[2, 2]) ** 0.5
         q[0] = (R[2, 1] - R[1, 2]) / temp_part
         q[1] = temp_part
@@ -878,7 +884,7 @@ def Get_Quaternion_From_Matrix(T: tp.List[tp.List[float]]) -> tp.List[float]:
         q[3] = (R[2, 0] + R[0, 2]) / temp_part
         return (q * 0.5).Normalize()
 
-    if R[1, 1] > R[2, 2] and R[0, 0] < R[1, 1] and R[0, 0] < (-1) * R[2, 2]:
+    if i == 2:
         temp_part = (1 - R[0, 0] + R[1, 1] - R[2, 2]) ** 0.5
         q[0] = (R[0, 2] - R[2, 0]) / temp_part
         q[1] = (R[0, 1] + R[1, 0]) / temp_part
@@ -886,7 +892,7 @@ def Get_Quaternion_From_Matrix(T: tp.List[tp.List[float]]) -> tp.List[float]:
         q[3] = (R[1, 2] + R[2, 1]) / temp_part
         return (q * 0.5).Normalize()
 
-    if R[1, 1] < R[2, 2] and R[0, 0] < (-1) * R[1, 1] and R[0, 0] < R[2, 2]:
+    if i == 3:
         temp_part = (1 - R[0, 0] - R[1, 1] + R[2, 2]) ** 0.5
         q[0] = (R[1, 0] - R[0, 1]) / temp_part
         q[1] = (R[2, 0] + R[0, 2]) / temp_part
@@ -961,7 +967,7 @@ class Homogeneous_Transformation_Matrix_Cls(object):
                 Cls.Transpose()
                 Cls.Diagonal()
                     ...
-                Cls.Get_Euler_Angles('ZYX')
+                Cls.Get_Rotation('ZYX')
     """
     
     # Create a global data type for the class.
@@ -974,7 +980,7 @@ class Homogeneous_Transformation_Matrix_Cls(object):
 
             # Create an array with the desired data type.
             self.__T = self.__data_type(T) if T is not None else self.__data_type(Get_Matrix_Identity(4))
-            
+
             """
             Description:
                 Determine if the shape of the input object is in the 
