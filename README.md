@@ -295,7 +295,7 @@ Roman.Parak@outlook.com
 
 ## Citation (BibTex)
 ```bash
-@misc{RomanParak_DataConverter,
+@misc{RomanParak_CollisionDetection,
   author = {Roman Parak},
   title = {An open-source collision detection library useful for robotics applications},
   year = {2023},
