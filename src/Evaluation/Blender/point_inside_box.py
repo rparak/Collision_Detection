@@ -99,7 +99,7 @@ def main():
         if Lib.Blender.Utilities.Object_Exist(f'Vertex_ID_0_{i}') == True:
             bpy.data.objects[f'Vertex_ID_0_{i}'].location = verts_i
         
-    # reate a specific class to work with a point.
+    # Create a specific class to work with a point.
     Point_Cls_id_0 = Primitives.Point_Cls([0.0,0.0,0.0])
 
     # Generate random points in the scene with additional dependencies.
