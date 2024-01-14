@@ -64,7 +64,7 @@ A simple program that describes how to work with the library can be found below.
 ```py 
 # System (Default)
 import sys
-# Custom Script:
+# Custom Lib.:
 #   ../Blender/Utilities
 import Blender.Utilities
 #   ../Collider/Core
@@ -136,7 +136,7 @@ A simple program that describes how to work with the library can be found below.
 ```py 
 # System (Default)
 import sys
-# Custom Script:
+# Custom Lib.:
 #   ../Blender/Utilities
 import Blender.Utilities
 #   ../Collider/Core
@@ -224,7 +224,7 @@ A simple program that describes how to work with the library can be found below.
 ```py 
 # System (Default)
 import sys
-# Custom Script:
+# Custom Lib.:
 #   ../Blender/Utilities
 import Blender.Utilities
 #   ../Collider/Core
