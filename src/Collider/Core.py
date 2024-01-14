@@ -30,14 +30,14 @@ import numpy as np
 # Typing (Support for type hints)
 import typing as tp
 # Custom Lib.:
-#  ../Lib/Collider/Utilities
-import Lib.Collider.Utilities as Utilities
-#  ../Lib/Primitives/Core
-import Lib.Primitives.Core as Primitives
-#  ../Lib/Transformation/Core
-from Lib.Transformation.Core import Homogeneous_Transformation_Matrix_Cls as HTM_Cls, Vector3_Cls, Get_Matrix_Identity
-#   ../Lib/Transformation/Utilities/Mathematics
-import Lib.Transformation.Utilities.Mathematics as Mathematics
+#  ../Collider/Utilities
+import Collider.Utilities as Utilities
+#  ../Primitives/Core
+import Primitives.Core as Primitives
+#  ../Transformation/Core
+from Transformation.Core import Homogeneous_Transformation_Matrix_Cls as HTM_Cls, Vector3_Cls, Get_Matrix_Identity
+#   ../Transformation/Utilities/Mathematics
+import Transformation.Utilities.Mathematics as Mathematics
 
 """
 Description:

@@ -8,18 +8,18 @@ import sys
 if '../../' + 'src' not in sys.path:
     sys.path.append('../../' + 'src')
 # Custom Lib.:
-#   ../Lib/Blender/Parameters/Camera
-import Lib.Blender.Parameters.Camera
-#   ../Lib/Blender/Core
-import Lib.Blender.Core
-#   ../Lib/Blender/Utilities
-import Lib.Blender.Utilities
-#   ../Lib/Collider/Core
-import Lib.Collider.Core as Collider
-#   ../Lib/Primitives/Core
-import Lib.Primitives.Core as Primitives
-#   ../Lib/Transformation/Core
-from Lib.Transformation.Core import Homogeneous_Transformation_Matrix_Cls as HTM_Cls
+#   ../Blender/Parameters/Camera
+import Blender.Parameters.Camera
+#   ../Blender/Core
+import Blender.Core
+#   ../Blender/Utilities
+import Blender.Utilities
+#   ../Collider/Core
+import Collider.Core as Collider
+#   ../Primitives/Core
+import Primitives.Core as Primitives
+#   ../Transformation/Core
+from Transformation.Core import Homogeneous_Transformation_Matrix_Cls as HTM_Cls
 
 """
 Description:
@@ -46,7 +46,7 @@ CONST_BOX_NAME  = 'AABB_ID_0'
 #   Initial position of the points of the line segment a, b.
 CONST_LINE_SEGMENT = [[0.0, -1.0, 0.0], [0.0, 1.0, 0.0]]
 # Set the structure of the main parameters of the camera.
-CONST_CAMERA_TYPE = Lib.Blender.Parameters.Camera.Right_View_Camera_Parameters_Str
+CONST_CAMERA_TYPE = Blender.Parameters.Camera.Right_View_Camera_Parameters_Str
 
 def main():
     """
@@ -59,33 +59,33 @@ def main():
     """
 
     # Deselect all objects in the current scene.
-    Lib.Blender.Utilities.Deselect_All()
+    Blender.Utilities.Deselect_All()
 
     # Set the camera (object) transformation and projection.
-    if Lib.Blender.Utilities.Object_Exist('Camera'):
-        Lib.Blender.Utilities.Set_Camera_Properties('Camera', CONST_CAMERA_TYPE)
+    if Blender.Utilities.Object_Exist('Camera'):
+        Blender.Utilities.Set_Camera_Properties('Camera', CONST_CAMERA_TYPE)
         
     # Removes the intersections of the aligned box (AABB or OBB).
-    Lib.Blender.Utilities.Remove_Object(f'Intersection_ID_0')
-    Lib.Blender.Utilities.Remove_Object(f'Intersection_ID_1')
+    Blender.Utilities.Remove_Object(f'Intersection_ID_0')
+    Blender.Utilities.Remove_Object(f'Intersection_ID_1')
 
     # If the points of the line segment do not exist, create them.
     #   Note: 
     #       If the points exist, just translate/rotate them using the control panel or another method in Blender.
     for i, const_l_s in enumerate(CONST_LINE_SEGMENT):
-        if Lib.Blender.Utilities.Object_Exist(f'Line_Segmet_Point_{i}') == False:
+        if Blender.Utilities.Object_Exist(f'Line_Segmet_Point_{i}') == False:
             # Properties of the created object.
             point_i_properties = {'transformation': {'Radius': 0.025, 'Location': const_l_s}, 
                                   'material': {'RGBA': [0.1,0.1,0.1,1.0], 'alpha': 1.0}}
             
             # Create a primitive three-dimensional object (sphere) with additional properties.
-            Lib.Blender.Utilities.Create_Primitive('Sphere', f'Line_Segmet_Point_{i}', point_i_properties)
+            Blender.Utilities.Create_Primitive('Sphere', f'Line_Segmet_Point_{i}', point_i_properties)
         
     line_segment = np.array([bpy.data.objects['Line_Segmet_Point_0'].location, 
                              bpy.data.objects['Line_Segmet_Point_1'].location], dtype=np.float64)
 
     # Create a class to visualize a line segment.
-    LS_Poly = Lib.Blender.Core.Poly_3D_Cls('Line_Segmet_ID_0', {'bevel_depth': 0.005, 'color': [0.1,0.1,0.1,1.0]}, 
+    LS_Poly = Blender.Core.Poly_3D_Cls('Line_Segmet_ID_0', {'bevel_depth': 0.005, 'color': [0.1,0.1,0.1,1.0]}, 
                                           {'visibility': False, 'radius': None, 'color': None})
     # Initialize the size (length) of the polyline data set.
     LS_Poly.Initialization(line_segment.shape[0])
@@ -102,13 +102,13 @@ def main():
     # If the box object does not exist, create it.
     #   Note: 
     #       If the object exists, just translate/rotate it using the control panel or another method in Blender.
-    if Lib.Blender.Utilities.Object_Exist(CONST_BOX_NAME) == False:
+    if Blender.Utilities.Object_Exist(CONST_BOX_NAME) == False:
         # Properties of the created object (box).
         box_properties = {'transformation': {'Size': 1.0, 'Scale': CONST_BOX_SCALE, 'Location': [0.0,0.0,0.0]}, 
                           'material': {'RGBA': [0.8,0.8,0.8,1.0], 'alpha': 0.05}}
                             
         # Create a primitive three-dimensional object (Cube -> Box) with additional properties.
-        Lib.Blender.Utilities.Create_Primitive('Cube', CONST_BOX_NAME, box_properties)
+        Blender.Utilities.Create_Primitive('Cube', CONST_BOX_NAME, box_properties)
 
     # Create a specific class to work with a box.
     Primitive_Cls = Primitives.Box_Cls([0.0,0.0,0.0], CONST_BOX_SCALE)
@@ -121,7 +121,7 @@ def main():
 
     # To evaluate the correct position/rotation of the box, find the vertices of the object.
     for i, verts_i in enumerate(Box_Cls.Vertices):
-        if Lib.Blender.Utilities.Object_Exist(f'Vertex_ID_0_{i}') == True:
+        if Blender.Utilities.Object_Exist(f'Vertex_ID_0_{i}') == True:
             bpy.data.objects[f'Vertex_ID_0_{i}'].location = verts_i
                  
     # Check if a line segment intersects with 3D primitive object (AABB or OBB). The function also contains information about 
@@ -136,16 +136,16 @@ def main():
                                'material': {'RGBA': [0.0,0.0,0.0,1.0], 'alpha': 1.0}}
                          
         # Create a primitive three-dimensional object (sphere) with additional properties.
-        Lib.Blender.Utilities.Create_Primitive('Sphere', 'Intersection_ID_0', sphere_1_properties)
-        Lib.Blender.Utilities.Create_Primitive('Sphere', 'Intersection_ID_1', sphere_2_properties)
+        Blender.Utilities.Create_Primitive('Sphere', 'Intersection_ID_0', sphere_1_properties)
+        Blender.Utilities.Create_Primitive('Sphere', 'Intersection_ID_1', sphere_2_properties)
 
         # There is an intersection: 
         #   The color of the object is set to red.
-        Lib.Blender.Utilities.Set_Object_Material_Color(CONST_BOX_NAME, [1.0,0.0,0.0,1.0])
+        Blender.Utilities.Set_Object_Material_Color(CONST_BOX_NAME, [1.0,0.0,0.0,1.0])
     else:
         # There is no intersection: 
         #   The color of the object is set to green.
-        Lib.Blender.Utilities.Set_Object_Material_Color(CONST_BOX_NAME, [0.0,1.0,0.0,1.0])
+        Blender.Utilities.Set_Object_Material_Color(CONST_BOX_NAME, [0.0,1.0,0.0,1.0])
 
 if __name__ == '__main__':
     main()

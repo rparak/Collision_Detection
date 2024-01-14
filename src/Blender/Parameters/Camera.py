@@ -32,10 +32,10 @@ from dataclasses import dataclass, field
 # Typing (Support for type hints)
 import typing as tp
 # Custom Lib.:
-#   ../Lib/Transformation/Core
-import Lib.Transformation.Core as Transformation 
-#   ../Lib/Transformation/Utilities
-import Lib.Transformation.Utilities.Mathematics as Mathematics
+#   ../Transformation/Core
+import Transformation.Core as Transformation 
+#   ../Transformation/Utilities
+import Transformation.Utilities.Mathematics as Mathematics
 
 @dataclass
 class Camera_Parameters_Str:

@@ -8,16 +8,16 @@ import sys
 if '../../' + 'src' not in sys.path:
     sys.path.append('../../' + 'src')
 # Custom Lib.:
-#   ../Lib/Blender/Parameters/Camera
-import Lib.Blender.Parameters.Camera
-#   ../Lib/Blender/Core
-import Lib.Blender.Utilities
-#   ../Lib/Collider/Core
-import Lib.Collider.Core as Collider
-#   ../Lib/Primitives/Core
-import Lib.Primitives.Core as Primitives
-#   ../Lib/Transformation/Core
-from Lib.Transformation.Core import Homogeneous_Transformation_Matrix_Cls as HTM_Cls
+#   ../Blender/Parameters/Camera
+import Blender.Parameters.Camera
+#   ../Blender/Core
+import Blender.Utilities
+#   ../Collider/Core
+import Collider.Core as Collider
+#   ../Primitives/Core
+import Primitives.Core as Primitives
+#   ../Transformation/Core
+from Transformation.Core import Homogeneous_Transformation_Matrix_Cls as HTM_Cls
     
 """
 Description:
@@ -46,7 +46,7 @@ CONST_OFFSET_RANDOM_POINTS = 0.25
 #   Number of points to be generated.
 CONST_NUM_OF_RANDOM_POINTS = 100
 # Set the structure of the main parameters of the camera.
-CONST_CAMERA_TYPE = Lib.Blender.Parameters.Camera.Right_View_Camera_Parameters_Str
+CONST_CAMERA_TYPE = Blender.Parameters.Camera.Right_View_Camera_Parameters_Str
 
 def main():
     """
@@ -59,17 +59,17 @@ def main():
     """
 
     # Deselect all objects in the current scene.
-    Lib.Blender.Utilities.Deselect_All()
+    Blender.Utilities.Deselect_All()
     
     # Set the camera (object) transformation and projection.
-    if Lib.Blender.Utilities.Object_Exist('Camera'):
-        Lib.Blender.Utilities.Set_Camera_Properties('Camera', CONST_CAMERA_TYPE)
+    if Blender.Utilities.Object_Exist('Camera'):
+        Blender.Utilities.Set_Camera_Properties('Camera', CONST_CAMERA_TYPE)
 
     # Removes random points if they exist in the current scene.
     i = 0
     while True:
-        if Lib.Blender.Utilities.Object_Exist(f'Point_ID_{i}') == True:
-            Lib.Blender.Utilities.Remove_Object(f'Point_ID_{i}')
+        if Blender.Utilities.Object_Exist(f'Point_ID_{i}') == True:
+            Blender.Utilities.Remove_Object(f'Point_ID_{i}')
         else:
             break     
         i += 1
@@ -77,13 +77,13 @@ def main():
     # If the box object does not exist, create it.
     #   Note: 
     #       If the object exists, just translate/rotate it using the control panel or another method in Blender.
-    if Lib.Blender.Utilities.Object_Exist(CONST_BOX_NAME) == False:
+    if Blender.Utilities.Object_Exist(CONST_BOX_NAME) == False:
         # Properties of the created object (box).
         box_properties = {'transformation': {'Size': 1.0, 'Scale': CONST_BOX_SCALE, 'Location': [0.0,0.0,0.0]}, 
                           'material': {'RGBA': [0.8,0.8,0.8,1.0], 'alpha': 0.05}}
                             
         # Create a primitive three-dimensional object (Cube -> Box) with additional properties.
-        Lib.Blender.Utilities.Create_Primitive('Cube', CONST_BOX_NAME, box_properties)
+        Blender.Utilities.Create_Primitive('Cube', CONST_BOX_NAME, box_properties)
 
     # Create a specific class to work with a box.
     Primitive_Cls = Primitives.Box_Cls([0.0,0.0,0.0], CONST_BOX_SCALE)
@@ -96,7 +96,7 @@ def main():
 
     # To evaluate the correct position/rotation of the box, find the vertices of the object.
     for i, verts_i in enumerate(Box_Cls.Vertices):
-        if Lib.Blender.Utilities.Object_Exist(f'Vertex_ID_0_{i}') == True:
+        if Blender.Utilities.Object_Exist(f'Vertex_ID_0_{i}') == True:
             bpy.data.objects[f'Vertex_ID_0_{i}'].location = verts_i
         
     # Create a specific class to work with a point.
@@ -122,7 +122,7 @@ def main():
                                'material': {'RGBA': p_rgba, 'alpha': 1.0}}
                  
         # Create a primitive three-dimensional object (sphere) with additional properties.
-        Lib.Blender.Utilities.Create_Primitive('Sphere', f'Point_ID_{i}', sphere_1_properties)    
+        Blender.Utilities.Create_Primitive('Sphere', f'Point_ID_{i}', sphere_1_properties)    
 
 if __name__ == '__main__':
     main()

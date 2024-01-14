@@ -30,8 +30,8 @@ import bpy
 # Typing (Support for type hints)
 import typing as tp
 # Custom Lib.:
-#   ../Lib/Blender/Utilities
-import Lib.Blender.Utilities
+#   ../Blender/Utilities
+import Blender.Utilities
 
 class Poly_3D_Cls(object):
     """
@@ -87,7 +87,7 @@ class Poly_3D_Cls(object):
         self.__name = name
         self.__visibility_points = point_properties['visibility']
         # Remove the object (hierarchy) from the scene, if it exists
-        Lib.Blender.Utilities.Remove_Object(self.__name)
+        Blender.Utilities.Remove_Object(self.__name)
         # Create a polyline data-block.
         self.__data_block = bpy.data.curves.new(self.__name, type='CURVE')
         self.__data_block.dimensions = '3D'
@@ -146,7 +146,7 @@ class Poly_3D_Cls(object):
                             'material': {'RGBA': self.__color_points, 'alpha': 1.0}}
         
         # Creation a spherical object with a defined position.
-        Lib.Blender.Utilities.Create_Primitive('Sphere', f'Point_{index}', point_properties)
+        Blender.Utilities.Create_Primitive('Sphere', f'Point_{index}', point_properties)
         bpy.ops.object.shade_smooth()
     
     def Visualization(self):
@@ -160,7 +160,7 @@ class Poly_3D_Cls(object):
 
         if self.__visibility_points == True:
             # Deselect all objects in the current scene.
-            Lib.Blender.Utilities.Deselect_All()
+            Blender.Utilities.Deselect_All()
             # Selection of the main object (curve)
             bpy.ops.object.select_pattern(pattern=f'{self.__name}.*', extend=False)
 

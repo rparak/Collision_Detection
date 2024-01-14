@@ -32,10 +32,10 @@ import typing as tp
 # Numpy (Array computing) [pip3 install numpy]
 import numpy as np
 # Custom Lib.:
-#   ../Lib/Transformation/Core
-import Lib.Transformation.Core as Transformation
-#   ../Lib/Blender/Parameters/Camera
-import Lib.Blender.Parameters.Camera
+#   ../Transformation/Core
+import Transformation.Core as Transformation
+#   ../Blender/Parameters/Camera
+import Blender.Parameters.Camera
 
 def Deselect_All() -> None:
     """
@@ -221,7 +221,7 @@ def Set_Object_Transformation(name: str, T: tp.List[tp.List[float]]) -> None:
     
     bpy.data.objects[name].matrix_basis = T.Transpose().all()
 
-def Set_Camera_Properties(name: str, Camera_Parameters_Str: Lib.Blender.Parameters.Camera.Camera_Parameters_Str):
+def Set_Camera_Properties(name: str, Camera_Parameters_Str: Blender.Parameters.Camera.Camera_Parameters_Str):
     """
     Description:
         Set the camera (object) transformation and projection.

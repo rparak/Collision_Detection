@@ -8,16 +8,16 @@ import sys
 if '../../' + 'src' not in sys.path:
     sys.path.append('../../' + 'src')
 # Custom Lib.:
-#   ../Lib/Blender/Parameters/Camera
-import Lib.Blender.Parameters.Camera
-#   ../Lib/Blender/Utilities
-import Lib.Blender.Utilities
-#   ../Lib/Collider/Core
-import Lib.Collider.Core as Collider
-#   ../Lib/Primitives/Core
-import Lib.Primitives.Core as Primitives
-#   ../Lib/Transformation/Core
-from Lib.Transformation.Core import Homogeneous_Transformation_Matrix_Cls as HTM_Cls
+#   ../Blender/Parameters/Camera
+import Blender.Parameters.Camera
+#   ../Blender/Utilities
+import Blender.Utilities
+#   ../Collider/Core
+import Collider.Core as Collider
+#   ../Primitives/Core
+import Primitives.Core as Primitives
+#   ../Transformation/Core
+from Transformation.Core import Homogeneous_Transformation_Matrix_Cls as HTM_Cls
     
 """
 Description:
@@ -41,7 +41,7 @@ CONST_BOX_SCALES = [[0.5, 0.5, 0.5], [0.5, 0.5, 0.5]]
 #             used to decide which algorithm to use.
 CONST_BOX_NAMES  = ['AABB_ID_0', 'AABB_ID_1']
 # Set the structure of the main parameters of the camera.
-CONST_CAMERA_TYPE = Lib.Blender.Parameters.Camera.Right_View_Camera_Parameters_Str
+CONST_CAMERA_TYPE = Blender.Parameters.Camera.Right_View_Camera_Parameters_Str
 
 def main():
     """
@@ -58,24 +58,24 @@ def main():
     """
 
     # Deselect all objects in the current scene.
-    Lib.Blender.Utilities.Deselect_All()
+    Blender.Utilities.Deselect_All()
 
     # Set the camera (object) transformation and projection.
-    if Lib.Blender.Utilities.Object_Exist('Camera'):
-        Lib.Blender.Utilities.Set_Camera_Properties('Camera', CONST_CAMERA_TYPE)
+    if Blender.Utilities.Object_Exist('Camera'):
+        Blender.Utilities.Set_Camera_Properties('Camera', CONST_CAMERA_TYPE)
 
     Box_Cls = [None, None]
     for i, (box_name_i, box_scale_i) in enumerate(zip(CONST_BOX_NAMES, CONST_BOX_SCALES)):
         # If the box object does not exist, create it.
         #   Note: 
         #       If the object exists, just translate/rotate it using the control panel or another method in Blender.
-        if Lib.Blender.Utilities.Object_Exist(box_name_i) == False:
+        if Blender.Utilities.Object_Exist(box_name_i) == False:
             # Properties of the created object.
             box_properties = {'transformation': {'Size': 1.0, 'Scale': box_scale_i, 'Location': [0.0, 0.0, 0.0]}, 
                               'material': {'RGBA': [0.8,0.8,0.8,1.0], 'alpha': 0.05}}
                                 
             # Create a primitive three-dimensional object (Cube -> AABB) with additional properties.
-            Lib.Blender.Utilities.Create_Primitive('Cube', box_name_i, box_properties)
+            Blender.Utilities.Create_Primitive('Cube', box_name_i, box_properties)
 
         # Create a specific class to work with a box.
         Primitive_Cls = Primitives.Box_Cls([0.0, 0.0, 0.0], box_scale_i)
@@ -88,20 +88,20 @@ def main():
 
         # To evaluate the correct position/rotation of the box, find the vertices of the object.
         for j, verts_j in enumerate(Box_Cls[i].Vertices):
-            if Lib.Blender.Utilities.Object_Exist(f'Vertex_ID_{i}_{j}') == True:
+            if Blender.Utilities.Object_Exist(f'Vertex_ID_{i}_{j}') == True:
                 bpy.data.objects[f'Vertex_ID_{i}_{j}'].location = verts_j
 
     # Check if two 3D primitives overlap (intersect) or not.
     if Box_Cls[0].Overlap(Box_Cls[1]) == True:
         # The boxes overlap:
         #   The color of the objects is set to red.
-        Lib.Blender.Utilities.Set_Object_Material_Color(CONST_BOX_NAMES[0], [1.0,0.0,0.0,1.0])
-        Lib.Blender.Utilities.Set_Object_Material_Color(CONST_BOX_NAMES[1], [1.0,0.0,0.0,1.0])
+        Blender.Utilities.Set_Object_Material_Color(CONST_BOX_NAMES[0], [1.0,0.0,0.0,1.0])
+        Blender.Utilities.Set_Object_Material_Color(CONST_BOX_NAMES[1], [1.0,0.0,0.0,1.0])
     else:
         # The boxes do not overlap:
         #   The color of the objects is set to green.
-        Lib.Blender.Utilities.Set_Object_Material_Color(CONST_BOX_NAMES[0], [0.0,1.0,0.0,1.0])
-        Lib.Blender.Utilities.Set_Object_Material_Color(CONST_BOX_NAMES[1], [0.0,1.0,0.0,1.0])
+        Blender.Utilities.Set_Object_Material_Color(CONST_BOX_NAMES[0], [0.0,1.0,0.0,1.0])
+        Blender.Utilities.Set_Object_Material_Color(CONST_BOX_NAMES[1], [0.0,1.0,0.0,1.0])
  
 if __name__ == '__main__':
     main()

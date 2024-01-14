@@ -31,7 +31,7 @@ import numpy as np
 import typing as tp
 # Custom Lib.:
 # ../Utilities/Mathematics
-import Lib.Transformation.Utilities.Mathematics as Mathematics
+import Transformation.Utilities.Mathematics as Mathematics
 
 def Is_Matrix_Square(M: tp.List[tp.List[float]]):
     """
