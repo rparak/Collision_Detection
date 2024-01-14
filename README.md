@@ -26,7 +26,7 @@ Windows, Linux, macOS
 An open-source library for collision detection of bounding boxes (AABB, OBB), useful for robotic applications such as path planning, inverse kinematics, and so on. The library provides access to specific classes for working with both types of bounding boxes: Axis-aligned Bounding Boxes (AABB) and Oriented Bounding Boxes (OBB). The specific classes focus on solving problems related to shape intersections, point tests, and last but not least, line intersections. Each of these problems is solved primarily in 3D space.
 
 ```bash
-Path: ..\Collision_Detection\src\Lib\Collider\Core.py
+Path: ..\Collision_Detection\src\Collider\Core.py
 ```
 
 In particular, the library focuses on solving the path planning problem and the self-collision problem in kinematics (inverse, forward). But, as an open-source library, it can be used for other tasks, as creativity knows no limits.
@@ -34,7 +34,7 @@ In particular, the library focuses on solving the path planning problem and the 
 For the initialization of primitives such as point, box, and line segment, see the following script.
 
 ```bash
-Path: ..\Collision_Detection\src\Lib\Primitives\Core.py
+Path: ..\Collision_Detection\src\Primitives\Core.py
 ```
 
 The repository also contains a transformation library with the necessary project-related functions. See link below.
@@ -65,14 +65,14 @@ A simple program that describes how to work with the library can be found below.
 # System (Default)
 import sys
 # Custom Script:
-#   ../Lib/Blender/Utilities
-import Lib.Blender.Utilities
-#   ../Lib/Collider/Core
-import Lib.Collider.Core as Collider
-#   ../Lib/Primitives/Core
-import Lib.Primitives.Core as Primitives
-#   ../Lib/Transformation/Core
-from Lib.Transformation.Core import Homogeneous_Transformation_Matrix_Cls as HTM_Cls
+#   ../Blender/Utilities
+import Blender.Utilities
+#   ../Collider/Core
+import Collider.Core as Collider
+#   ../Primitives/Core
+import Primitives.Core as Primitives
+#   ../Transformation/Core
+from Transformation.Core import Homogeneous_Transformation_Matrix_Cls as HTM_Cls
 
 """
 Description:
@@ -137,14 +137,14 @@ A simple program that describes how to work with the library can be found below.
 # System (Default)
 import sys
 # Custom Script:
-#   ../Lib/Blender/Utilities
-import Lib.Blender.Utilities
-#   ../Lib/Collider/Core
-import Lib.Collider.Core as Collider
-#   ../Lib/Primitives/Core
-import Lib.Primitives.Core as Primitives
-#   ../Lib/Transformation/Core
-from Lib.Transformation.Core import Homogeneous_Transformation_Matrix_Cls as HTM_Cls
+#   ../Blender/Utilities
+import Blender.Utilities
+#   ../Collider/Core
+import Collider.Core as Collider
+#   ../Primitives/Core
+import Primitives.Core as Primitives
+#   ../Transformation/Core
+from Transformation.Core import Homogeneous_Transformation_Matrix_Cls as HTM_Cls
 
 """
 Description:
@@ -225,14 +225,14 @@ A simple program that describes how to work with the library can be found below.
 # System (Default)
 import sys
 # Custom Script:
-#   ../Lib/Blender/Utilities
-import Lib.Blender.Utilities
-#   ../Lib/Collider/Core
-import Lib.Collider.Core as Collider
-#   ../Lib/Primitives/Core
-import Lib.Primitives.Core as Primitives
-#   ../Lib/Transformation/Core
-from Lib.Transformation.Core import Homogeneous_Transformation_Matrix_Cls as HTM_Cls
+#   ../Blender/Utilities
+import Blender.Utilities
+#   ../Collider/Core
+import Collider.Core as Collider
+#   ../Primitives/Core
+import Primitives.Core as Primitives
+#   ../Transformation/Core
+from Transformation.Core import Homogeneous_Transformation_Matrix_Cls as HTM_Cls
 
 """
 Description:
